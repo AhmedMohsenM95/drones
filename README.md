@@ -27,6 +27,15 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 mvn spring-boot:run
 ```
 
+## Run Tests using mvn
+
+There are several ways to run the test on Spring Boot application on your local machine. One way is to execute the `Test Controller` class in the `com.musala.drones.DroneControllerTest` from your IDE.
+
+Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-maven-plugin.html) like so:
+
+```shell
+mvn clean test
+```
 ## Swagger UI (Swagger Documentation)
 
 To access swagger UI is through this link after running the application:

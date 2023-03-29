@@ -9,6 +9,7 @@ import com.musala.drones.model.enums.DroneState;
 import com.musala.drones.service.framework.DroneService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class DroneController {
         if (droneDTO.getBatteryCapacity() < 25 && droneDTO.getDroneState().equals(DroneState.LOADING)) {
             throw new InvalidRequestException("Drone cannot be in loading state if the battery percentage is below 25%");
         }
-        return ResponseEntity.ok(droneService.registerDrone(droneDTO));
+        return new ResponseEntity<>(droneService.registerDrone(droneDTO), HttpStatus.CREATED);
     }
 
     @PostMapping("/{droneId}/load")
