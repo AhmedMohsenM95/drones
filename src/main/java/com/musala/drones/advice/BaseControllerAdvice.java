@@ -43,25 +43,26 @@ public class BaseControllerAdvice extends ResponseEntityExceptionHandler {
                 .timestamp(LocalDateTime.now()).build());
     }
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<APIError> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, HttpServletRequest servletRequest, HttpServletResponse response) {
-        e.printStackTrace();
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ex.printStackTrace();
         return ResponseEntity.badRequest().body(APIError.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .statusCode(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(messageUtils.getMessage("invalid.request.format"))
-                .path(servletRequest.getRequestURI())
+                .path(((ServletWebRequest) request).getRequest().getRequestURI())
                 .timestamp(LocalDateTime.now()).build());
     }
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<APIError> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e, HttpServletRequest servletRequest, HttpServletResponse response) {
-        e.printStackTrace();
+    @Override
+    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        ex.printStackTrace();
         return ResponseEntity.badRequest().body(APIError.builder()
                 .status(HttpStatus.BAD_REQUEST.value())
                 .statusCode(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(messageUtils.getMessage("invalid.method"))
-                .path(servletRequest.getRequestURI())
+                .path(((ServletWebRequest) request).getRequest().getRequestURI())
                 .timestamp(LocalDateTime.now()).build());
     }
 

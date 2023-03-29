@@ -6,7 +6,7 @@ create table if not exists DRONE
     MODEL            varchar(255) not null,
     WEIGHT_LIMIT     INTEGER      not null,
     BATTERY_CAPACITY INTEGER      not null,
-    STATE            varchar(255) not null,
+    STATE            varchar(255) not null
 );
 
 create table if not exists MEDICATION

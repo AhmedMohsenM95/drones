@@ -7,6 +7,9 @@ This project is for supporting the use of drones with the below features.
 * Checking available drones for loading
 * Check drone battery level for a given drone
 
+Additional Services
+* Change drone state
+* Update drone battery percentage 
 
 ## Requirements
 
