@@ -22,3 +22,13 @@ create table if not exists MEDICATION
     constraint drone_serial_number_fk
         foreign key (DRONE_SERIAL_NUMBER) references DRONE (SERIAL_NUMBER)
 );
+
+create table if not exists DRONE_BATTERY_AUDIT
+(
+    ID                  bigint auto_increment,
+    DRONE_SERIAL_NUMBER varchar(100),
+    BATTERY_LEVEL       INTEGER,
+    CREATED_AT          datetime,
+    constraint drone_battery_audit_drone_serial_number_fk
+        foreign key (DRONE_SERIAL_NUMBER) references DRONE (SERIAL_NUMBER)
+);

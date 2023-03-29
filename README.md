@@ -7,9 +7,6 @@ This project is for supporting the use of drones with the below features.
 * Checking available drones for loading
 * Check drone battery level for a given drone
 
-Additional Services
-* Change drone state
-* Update drone battery percentage 
 
 ## Requirements
 
@@ -28,4 +25,62 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 
 ```shell
 mvn spring-boot:run
+```
+
+## Swagger UI (Swagger Documentation)
+
+To access swagger UI is through this link after running the application:
+[Swagger UI documentation](http://localhost:8080/swagger-ui/index.html)
+
+
+
+## Request samples for testing through REST Client
+
+* Registering a drone
+ ``` 
+POST http://localhost:8080/drone
+  Content-Type: application/json
+
+{
+"serialNumber": "E12EAE24",
+"model": "Lightweight",
+"weightLimit": 300,
+"batteryCapacity": 70,
+"droneState": "IDLE"
+}
+```
+
+* Loading a drone with medication items
+ ``` 
+POST http://localhost:8080/drone/E12EAE23/load
+Content-Type: application/json
+
+[
+  {
+    "name": "AHMED_2",
+    "weight": 100,
+    "code": "TEST_PNG",
+    "image": {
+        "data": "/9j/4AA/..", --base64
+        "fileName": "test",
+        "fileExtension": ".png"
+      }
+
+  }
+]
+```
+
+* Checking loaded medication items for a given drone
+ ```
+GET http://localhost:8080/drone/E12EAE23/medications
+```
+
+* Checking available drones for loading
+ ```
+GET http://localhost:8080/drone/load/available
+```
+
+* Check drone battery level for a given drone
+ ```
+GET http://localhost:8080/drone/E12EAE24/battery
 ```

@@ -1,6 +1,7 @@
 package com.musala.drones.model.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.musala.drones.model.enums.DroneModel;
 import com.musala.drones.model.enums.DroneState;
 import lombok.*;
@@ -33,6 +34,7 @@ public class Medication {
 
     @Lob
     @Column(name = "IMAGE_DATA", columnDefinition = "mediumblob")
+    @ToString.Exclude
     private byte[] image;
 
     @Column(name = "IMAGE_NAME")
@@ -43,6 +45,9 @@ public class Medication {
 
     @ManyToOne
     @JoinColumn(name = "DRONE_SERIAL_NUMBER", referencedColumnName = "SERIAL_NUMBER")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
     private Drone drone;
 
 }
