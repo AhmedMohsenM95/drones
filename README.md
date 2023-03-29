@@ -6,7 +6,8 @@ This project is for supporting the use of drones with the below features.
 * Checking loaded medication items for a given drone
 * Checking available drones for loading
 * Check drone battery level for a given drone
-* 
+
+
 ## Requirements
 
 For building and running the application you need:
@@ -14,6 +15,7 @@ For building and running the application you need:
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Maven 3](https://maven.apache.org)
 
+If you are running the project from an IDEA link intellij you have to enable annotation processing for `lombok` plugin
 
 ## Running the application locally
 
